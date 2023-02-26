@@ -17,11 +17,18 @@ export default class ProductModel {
     const { insertId } = result; 
     return { id: insertId, ...product };
   }
+
+  public async getAll(): Promise<Product[]> {
+    const [result] = await this.connection.execute(
+      'SELECT * FROM Trybesmith.products',
+    );
+    return <Product[]> result;
+  }
 }
 
 // const teste = async () => {
 //   const model = new ProductModel(connectio);
-//   await model.create({ name: 'Notebook', amount: '100' }).then(console.log);
+//   await model.getAll().then(console.log);
 // };
 
 // teste();
