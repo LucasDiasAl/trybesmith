@@ -9,13 +9,10 @@ type Product = {
 
 export default class ProductsMiddleware {
   static validateProperties = (product: Product): string | null => {
-    const entries = Object.entries(product);
     for (let i = 0; i < properties.length; i += 1) {
       if (!Object.prototype.hasOwnProperty.call(product, properties[i])) {
         return properties[i];
       }
-      const [property, value] = entries[i];
-      if (!value) return property;
     }
     return null;
   };
