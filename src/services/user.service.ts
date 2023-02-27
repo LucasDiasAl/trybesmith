@@ -1,7 +1,7 @@
 import connection from '../models/connection';
 import UserModel from '../models/user.model';
 import User from '../interfaces/user.interface';
-import JwtGenerator from '../middlewares/JwtGenerator';
+import JwtGenerator from '../utils/JwtGenerator';
 
 export default class UserService {
   public model: UserModel;
