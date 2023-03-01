@@ -6,7 +6,12 @@ const productsController = new ProductsController();
 const productMiddleware = new ProductsMiddleware();
 const router = Router();
 
-router.post('/', productMiddleware.productValidation, productsController.createProduct);
+router.post(
+  '/', 
+  productMiddleware.productValidation,
+
+  productsController.createProduct,
+);
 
 router.get('/', productsController.getAllProducts);
 

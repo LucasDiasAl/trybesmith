@@ -1,6 +1,5 @@
 import { Pool } from 'mysql2/promise';
 import User from '../interfaces/user.interface';
-// import connectio from './connection';
 
 type Login = {
   username: string,
@@ -23,10 +22,3 @@ export default class OrdersModel {
     return <User[]> foundUser;
   }
 }
-
-// const teste = async () => {
-//   const model = new OrdersModel(connectio);
-//   await model.getUser({ username: 'reig', password: '1dragaeu' }).then(console.log);
-// };
-
-// teste();

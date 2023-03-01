@@ -7,5 +7,10 @@ const router = Router();
 const loginController = new LoginController();
 const loginMiddleware = new LoginMiddleware();
 
-router.post('/', loginMiddleware.loginValidation, loginController.login);
+router.post(
+  '/', 
+  loginMiddleware.loginValidation,
+
+  loginController.login,
+);
 export default router;

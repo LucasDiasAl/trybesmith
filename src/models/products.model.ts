@@ -1,6 +1,5 @@
 import { Pool, ResultSetHeader } from 'mysql2/promise';
 import Product from '../interfaces/product.interface';
-// import connectio from './connection';
 
 export default class ProductModel {
   public connection: Pool;
@@ -25,10 +24,3 @@ export default class ProductModel {
     return <Product[]> result;
   }
 }
-
-// const teste = async () => {
-//   const model = new ProductModel(connectio);
-//   await model.getAll().then(console.log);
-// };
-
-// teste();

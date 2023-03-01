@@ -6,6 +6,11 @@ const userController = new UserController();
 const userValidation = new UserValidation();
 const router = Router();
 
-router.post('/', userValidation.userValidation, userController.createUser);
+router.post(
+  '/', 
+  userValidation.userValidation,
+
+  userController.createUser,
+);
 
 export default router;

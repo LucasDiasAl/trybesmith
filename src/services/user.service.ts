@@ -17,4 +17,8 @@ export default class UserService {
     const token = JwtGenerator(payload);
     return token;
   }
+
+  public getUserById(id: string | null): Promise<User[]> {
+    return this.model.getUserById(id);
+  }
 }

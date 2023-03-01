@@ -1,6 +1,10 @@
-import { Pool } from 'mysql2/promise';
+import { Pool, ResultSetHeader } from 'mysql2/promise';
 import Orders from '../interfaces/order.interface';
-// import connectio from './connection';
+
+type NewOrders = {
+  userId: string,
+  productsIds: number[],
+};
 
 export default class OrdersModel {
   public connection: Pool;
@@ -19,11 +23,22 @@ export default class OrdersModel {
     );
     return <Orders[]> result;
   }
+
+  public async newOrder(userId: string, products: number[]): Promise<NewOrders> { 
+    const [result] = await this.connection.execute<ResultSetHeader>(
+      'INSERT INTO Trybesmith.orders (user_id) VALUES (?)',
+      [userId],
+    );
+    const { insertId } = result;
+    const promises = products.map(async (productId) => {
+      await this.connection.execute(
+        `UPDATE Trybesmith.products 
+         SET order_id = (?)
+         WHERE id = (?)`,
+        [insertId, productId],
+      );
+    });
+    await Promise.all(promises);
+    return <NewOrders> { userId, productsIds: products };
+  }
 }
-
-// const teste = async () => {
-//   const model = new OrdersModel(connectio);
-//   await model.getOrdersJoin().then(console.log);
-// };
-
-// teste();
