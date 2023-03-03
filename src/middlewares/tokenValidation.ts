@@ -4,7 +4,7 @@ import UserService from '../services/user.service';
 import User from '../interfaces/user.interface';
 
 require('dotenv/config');
-
+// 8 nao passou
 const secret = process.env.JWT_SECRET || 'secret'; 
 
 export default class TokenValidation {
