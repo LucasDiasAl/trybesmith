@@ -10,7 +10,6 @@
     "plugin:@typescript-eslint/recommended",
     "airbnb-base",
     "plugin:editorconfig/noconflict",
-    "plugin:mocha/recommended",
     "airbnb-typescript/base"
   ],
   "parser": "@typescript-eslint/parser",
@@ -64,14 +63,14 @@
     "max-lines-per-function": [
       "error",
       {
-        "max": 20,
+        "max": 200,
         "skipBlankLines": true,
         "skipComments": true
       }
     ],
     "max-len": [
       "error",
-      100,
+      120,
       {
         "ignoreComments": true
       }

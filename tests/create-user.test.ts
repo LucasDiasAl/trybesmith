@@ -1,25 +1,24 @@
 import request from 'supertest';
+import { expect, describe, it, beforeAll, afterAll } from '@jest/globals';
 import app from '../src/app';
 import connection from '../src/models/connection';
 import recreateDatabase from './recreateDatabase';
 
-require('mysql2/node_modules/iconv-lite').encodingExists('foo');
-
-describe('3 - Crie um endpoint para o cadastro de pessoas usuárias', function() {
+describe('Testa o endpoint para o cadastro de pessoas usuárias', () => {
   beforeAll(async () => {
     await recreateDatabase(connection);
   });
   afterAll(() => {
     connection.end();
-  })
+  });
 
-  it('Será validado que é possível cadastrar a pessoa usuária com sucesso', async function() {
+  it('Será validado que é possível cadastrar a pessoa usuária com sucesso', async () => {
     const user = {
       username: 'catiau',
       password: 'senha1234',
       level: 2,
       vocation: 'vocation',
-    }
+    };
     const result = await request(app).post('/users').send(user);
     expect(result.statusCode).toEqual(201);
     expect(result.body).toBeDefined();
@@ -35,8 +34,8 @@ describe('3 - Crie um endpoint para o cadastro de pessoas usuárias', function()
 
     expect(users).toEqual(
       expect.arrayContaining(
-        [expect.objectContaining(user)]
-      )
-    )
+        [expect.objectContaining(user)],
+      ),
+    );
   });
 });
